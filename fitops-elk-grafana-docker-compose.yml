@@ -1,0 +1,41 @@
+version: '3'
+services:
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+        container_name: elasticsearch
+        environment:
+            - discovery.type=single-node
+            - http.port=9200
+            - http.cors.enabled=true
+            - http.cors.allow-origin=http://localhost:3000,http://127.0.0.1:3000
+            - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+            - http.cors.allow-credentials=true
+            - bootstrap.memory_lock=true
+            - 'ES_JAVA_OPTS=-Xms512m -Xmx512m'
+        ports:
+            - '9200:9200'
+            - '9300:9300'
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        volumes:
+            - ./data:/usr/share/elasticsearch/data
+    grafana:
+       image: grafana/grafana:latest
+       container_name: grafana
+       ports:
+           - "3000:3000"
+       links:
+           - elasticsearch
+    fitops:
+        build: .
+        container_name: fitops
+        environment: 
+            - FITOPS_OAUTH_CLIENT_ID=<From the fitbit dev accoun setup>
+            - FITOPS_CLIENT_SECRET=<From the fitbit dev accoun setup>
+            - FITOPS_REDIRECT_URL=<From the fitbit dev accoun setup>
+            - FITOPS_AUTH_URL=<From the fitbit dev accoun setup>
+            - FITOPS_ACCESS_TOKEN_URI=<From the fitbit dev accoun setup>
+        links:
+            - elasticsearch

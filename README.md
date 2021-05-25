@@ -1,6 +1,7 @@
 # FitOps
-Your fitbit insights on steroids ;)
+Your fitbit insights on steroids and your fitbit data democratized ;)
 
+> This project is presented as a part of the "Elastic Weekend with Code for Cause" Hackathon 
 
 ## Motivation
 
@@ -17,6 +18,10 @@ FitOps targets towards accomplishing two goals:
 * **Democratization of your fitbit data** - FitOps fetches your fitbit's data periodically and stores it under your roof making "you!" the owner and sole proprietar of your own data. The control and ownership of your data becomes completely yours!
 * **E2E control of the level and granularity of insights** - FitOps cooks up a grafana dashboard at your disposal encompassing a fantastic set of panels to depict a holistic view of your fitbit-oriented health insights. 
 And you can flexibly control the E2E mechanics of all those panels by tweaking the panels in any way you'd want ranging low-level to high-level granularity.
+
+## Checkout the video presentation
+
+https://www.youtube.com/watch?v=wO5pLP-wVfE
 
 ## Setup
 
